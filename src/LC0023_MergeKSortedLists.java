@@ -1,10 +1,8 @@
-import java.util.List;
-
-public class LC23_MergeKSortedLists {
+public class LC0023_MergeKSortedLists {
 
     public static void main(String[] args) {
 
-        LC23_MergeKSortedLists merge = new LC23_MergeKSortedLists();
+        LC0023_MergeKSortedLists merge = new LC0023_MergeKSortedLists();
         merge.test();
 
     }

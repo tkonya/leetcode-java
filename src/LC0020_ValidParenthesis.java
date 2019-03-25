@@ -1,4 +1,4 @@
-public class LC20_ValidParenthesis {
+public class LC0020_ValidParenthesis {
 
     public static void main(String[] args) {
         System.out.println(isValid("()"));

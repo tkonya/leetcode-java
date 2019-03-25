@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LC22_GenerateParenthesis {
+public class LC0022_GenerateParenthesis {
 
 
     public static void main(String[] args) {
 
-        LC22_GenerateParenthesis gen = new LC22_GenerateParenthesis();
+        LC0022_GenerateParenthesis gen = new LC0022_GenerateParenthesis();
         System.out.println(gen.generateParenthesis(3));
 
     }
@@ -34,7 +34,7 @@ public class LC22_GenerateParenthesis {
         }
 
         System.out.println("Raw elements: "+ answers.size());
-        answers = answers.stream().filter(LC22_GenerateParenthesis::isValid).collect(Collectors.toList());
+        answers = answers.stream().filter(LC0022_GenerateParenthesis::isValid).collect(Collectors.toList());
         System.out.println("Valid elements: "+ answers.size());
 
         return answers;
