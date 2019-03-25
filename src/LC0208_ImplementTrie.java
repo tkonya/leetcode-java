@@ -11,20 +11,19 @@ public class LC0208_ImplementTrie {
 
         Trie obj = new Trie();
         obj.insert("Trie");
-        System.out.println(obj.startsWith("a"));
-
 
         obj.insert("someday");
+        obj.insert("something");
 
         // should be true
-        System.out.println(obj.search("something"));
-        System.out.println(obj.startsWith("some"));
-        System.out.println(obj.startsWith("someday"));
+        System.out.println("\nShould be true: " + obj.search("something") + "\n");
+        System.out.println("\nShould be true: " + obj.startsWith("some") + "\n");
+        System.out.println("\nShould be true: " + obj.startsWith("someday") + "\n");
 
         // should be false
-        System.out.println(obj.search("oranges"));
-        System.out.println(obj.search("so"));
-        System.out.println(obj.startsWith("somethingortheother"));
+        System.out.println("\nShould be false: " + obj.search("oranges") + "\n");
+        System.out.println("\nShould be false: " + obj.search("so") + "\n");
+        System.out.println("\nShould be false: " + obj.startsWith("somethingortheother") + "\n");
 
     }
 
@@ -81,7 +80,7 @@ public class LC0208_ImplementTrie {
             }
 
             if (wordRemainder.length() == 1) {
-                System.out.println("Setting word end at '" + wordRemainder + "'");
+//                System.out.println("Setting word end at '" + wordRemainder + "'");
                 children.get(currentLetter).wordEnd = true;
             } else {
                 children.get(currentLetter).addWord(wordRemainder.substring(1));
@@ -102,78 +101,33 @@ public class LC0208_ImplementTrie {
             boolean isEndOfSearchWord = searchWord.length() <= 1;
 
             if (!isRoot) {
-                System.out.println("Looking for '" + searchWord + "'");
+//                System.out.println("Looking for '" + searchWord + "'");
                 if (!searchWord.startsWith(value)) {
                     return false;
                 }
                 searchWord = searchWord.substring(1);
-            }
 
-            if (isEndOfSearchWord) {
-                System.out.println("Found the end of search word");
-                if (mustBeEnd) {
-                    return wordEnd;
-                } else {
-                    return true;
+
+                if (isEndOfSearchWord) {
+//                    System.out.println("Found the end of search word");
+                    if (mustBeEnd) {
+                        return wordEnd;
+                    } else {
+                        return true;
+                    }
                 }
             }
 
-            if (children.containsKey(searchWord.substring(0, 1))) {
+            if (isRoot && "".equals(searchWord)) {
+                return true;
+            } else if (children.containsKey(searchWord.substring(0, 1))) {
                 return children.get(searchWord.substring(0, 1)).find(searchWord, mustBeEnd);
             } else {
-                System.out.println("No children match " + searchWord);
+//                System.out.println("No children match " + searchWord);
                 return false;
             }
 
         }
-
-//        public boolean startsWith(String searchWord) {
-//            System.out.println("Searching for starts with '" + searchWord + "'");
-//            if (searchWord.startsWith(value)) {
-//                if (searchWord.length() <= 1) {
-//                    return true;
-//                } else {
-//                    if ("".equals(value)) {
-//                        if (children.containsKey(searchWord.substring(0, 1))) {
-//                            return children.get(searchWord.substring(0, 1)).startsWith(searchWord);
-//                        } else {
-//                            return false;
-//                        }
-//                    } else {
-//                        if (children.containsKey(searchWord.substring(1, 2))) {
-//                            return children.get(searchWord.substring(1, 2)).startsWith(searchWord.substring(1));
-//                        } else {
-//                            return false;
-//                        }
-//                    }
-//                }
-//            }
-//            return false;
-//        }
-//
-//        public boolean search(String searchWord) {
-//            System.out.println("Searching for '" + searchWord + "'");
-//            if (searchWord.startsWith(value)) {
-//                if (searchWord.length() <= 1) {
-//                    return wordEnd;
-//                } else {
-//                    if ("".equals(value)) {
-//                        if (children.containsKey(searchWord.substring(0, 1))) {
-//                            return children.get(searchWord.substring(0, 1)).search(searchWord);
-//                        } else {
-//                            return false;
-//                        }
-//                    } else {
-//                        if (children.containsKey(searchWord.substring(1, 2))) {
-//                            return children.get(searchWord.substring(1, 2)).search(searchWord.substring(1));
-//                        } else {
-//                            return false;
-//                        }
-//                    }
-//                }
-//            }
-//            return false;
-//        }
 
     }
 }
